@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.30"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "_Order_Management_System_for_a_Trading_Platform",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "_Order_Management_System_for_a_Trading_Platform::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-_Order_Management_System_for_a_Trading_Platform-Debug-ccca86048e35cd1ee7f1.json",
+					"name" : "_Order_Management_System_for_a_Trading_Platform",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/joycelinemarealle/CLionProjects/ Order Management System for a Trading Platform/cmake-build-debug",
+		"source" : "/Users/joycelinemarealle/CLionProjects/ Order Management System for a Trading Platform"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
