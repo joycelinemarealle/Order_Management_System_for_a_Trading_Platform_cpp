@@ -13,6 +13,7 @@ class Order
     int quantity;
     OrderSide side;
     OrderStatus status;
+    int filledQuantity = 0; //track how many units filled
 
   public:
       Order( int id, double price, int quantity, OrderSide side, OrderStatus status);
