@@ -1,4 +1,4 @@
-# Install script for directory: /Users/joycelinemarealle/CLionProjects/ Order Management System for a Trading Platform
+# Install script for directory: /Users/joycelinemarealle/CLionProjects/ Order Management System 
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/Users/joycelinemarealle/CLionProjects/ Order Management System for a Trading Platform/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/joycelinemarealle/CLionProjects/ Order Management System /cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
