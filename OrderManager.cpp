@@ -28,15 +28,21 @@ bool OrderManager::cancelOrder(int orderId) {
     if (it != orders.end()) {
         //if found
         it->second.setStatus(OrderStatus::Cancelled); //set to cancelled
-        std::cout<< "Order " << orderId << " cancelled." << std::endl;
+        std::cout << "Order " << orderId << " cancelled." << std::endl;
     }
     return true; //successs
 }
 
 
-// const Order* OrderManager::getOrder(int orderId) const {
-//     return nullptr;
-// }
+const Order *OrderManager::getOrder(int orderId) const {
+    //find order by id
+    auto it = orders.find(orderId);
+    if (it != orders.end()) {
+        std::cout << "Order with id " << orderId << " was found"<<std::endl;
+        return &(it->second) ; //return address
+    }
+    return nullptr;
+}
 
 //std::vector<const Order*> OrderManager::getAllOrders() const {
 //    return std::vector< const Order*>;
