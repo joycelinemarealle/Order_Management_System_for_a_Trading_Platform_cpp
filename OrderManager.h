@@ -22,5 +22,7 @@ public:
     const Order *getOrder(int orderId) const;
 
     std::vector<const Order *> getAllOrders() const;
+
+    void printOrders() const;
 };
 #endif //ORDERMANAGER_H

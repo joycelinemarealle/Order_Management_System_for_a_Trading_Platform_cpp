@@ -8,6 +8,7 @@ int main() {
     //submit orders
     int id1 = manager.submitOrder(OrderSide::Buy, 100.5, 10, OrderStatus::New);
     int id2 = manager.submitOrder(OrderSide::Sell, 101.0, 5, OrderStatus::New);
+    int id3 = manager.submitOrder(OrderSide::Sell, 104.0, 15, OrderStatus::New);
 
 
     //cancel order 2
@@ -15,26 +16,18 @@ int main() {
 
 
     //Get order 1
-    auto order = manager.getOrder(id1);
+    const auto order = manager.getOrder(id1);
+    const auto order2 = manager.getOrder(id3);
     //if present print out
     if (order != nullptr) {
-        std::cout << "Order has ID:" << order->getId() << ", Price: " << order->getPrice()
-                << ", Quantity:" << order->getQuantity() << ", Side: " <<
-                (order->getSide() == OrderSide::Buy ? "Buy" : "Sell") << ", Status: ";
-        switch (order->getStatus()) {
-            case OrderStatus::New: std::cout << "New";
-                break;
-            case OrderStatus::PartiallyFilled: std::cout << "PartiallyFilled";
-                break;
-            case OrderStatus::Filled: std::cout << "Filled";
-                break;
-            case OrderStatus::Cancelled: std::cout << "Cancelled";
-                break;
-        }
-    } //if not any of the status then
-    else {
-        std::cout << "Order" << id1 << "not found." << std::endl;
-    }
+        //get all orders
+        std::vector<const Order *> allOrders = manager.getAllOrders();
 
-    return 0;
+        //Print all orderss
+        std::cout << "Print out all orders" << std::endl;
+        manager.printOrders();
+
+
+        return 0;
+    }
 }
