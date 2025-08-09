@@ -43,6 +43,11 @@ void Order::fill(int quantityFilled) {
     }
 }
 
+//get filled quantity
+int Order::getFilledQuantity() const{
+ return filledQuantity;
+};
+
 //check if order is fully filled
 bool Order::isFilled() const {
     return filledQuantity >= quantity;

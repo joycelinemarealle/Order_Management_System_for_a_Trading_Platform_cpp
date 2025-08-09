@@ -75,8 +75,54 @@ void OrderManager::printOrders() const {
                 break;
             case OrderStatus::Cancelled: std::cout << "Cancelled";
                 break;
-            default:
-                std::cout << "Order" << order.getId() << "not found." << std::endl;
+            default: std::cout << "Unknown status";
+                break;
         }
-    } //if not any of the status then
+        std::cout << std::endl;
+    }
+}
+
+//Match orders buy and sell
+void OrderManager::matchOrders() {
+    //Loop through all buy orders
+    for (auto &buyPair: orders) {
+        auto &buyOrder = buyPair.second;
+        //filter what i do not want
+        //1)if side not buy
+        if (buyOrder.getSide() != OrderSide::Buy) { continue; }
+        //2)if status cancelled or filled
+        if (buyOrder.getStatus() == OrderStatus::Filled || buyOrder.getStatus() == OrderStatus::Cancelled) {
+            continue;
+        }
+
+        //Loop through all sell orders
+        for (auto &sellPair: orders) {
+            auto &sellOrder = sellPair.second;
+            //filter what I do not want
+            //1)if side not sell 2) if status filled or cancelled
+            if (sellOrder.getSide() != OrderSide::Sell) { continue; }
+            if (sellOrder.getStatus() == OrderStatus::Filled || sellOrder.getStatus() == OrderStatus::Cancelled) {
+                continue;
+            }
+            //now have sell order
+            // check match. trade if buy price >=  to sell price
+            if (buyOrder.getPrice() >= sellOrder.getPrice()) {
+                //can trade. fill or partially fill order
+                //check remaining orders for both sides
+                int buyRemaining = buyOrder.getQuantity() - buyOrder.getFilledQuantity();
+                int sellRemaining = sellOrder.getQuantity() - sellOrder.getFilledQuantity();
+                //can only buy <= sell amount
+                int matchQty = std::min(buyRemaining, sellRemaining);
+                //fill orders
+                buyOrder.fill(matchQty);
+                sellOrder.fill(matchQty);
+
+                std::cout << "\nMatched " << matchQty << " units between buy order " << buyOrder.getId() <<
+                        " and sell Order " << sellOrder.getId() << std::endl;
+
+                //stop if buy order is full fulfilled
+                if (buyOrder.isFilled()) { break; }
+            }
+        }
+    }
 }

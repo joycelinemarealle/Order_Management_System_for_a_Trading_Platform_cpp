@@ -28,6 +28,8 @@ public:
 
     OrderStatus getStatus() const;
 
+    int getFilledQuantity() const;
+
     void setStatus(OrderStatus newStatus);
 
     void setFilledQuantity(int filled);

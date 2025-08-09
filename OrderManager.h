@@ -24,5 +24,7 @@ public:
     std::vector<const Order *> getAllOrders() const;
 
     void printOrders() const;
+
+    void matchOrders();
 };
 #endif //ORDERMANAGER_H
