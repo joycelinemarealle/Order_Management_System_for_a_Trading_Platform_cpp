@@ -9,7 +9,7 @@
 
 //Add a new order and return its unique id
 int OrderManager::submitOrder(OrderSide side, double price, int quantity, OrderStatus status) {
-    //geneate unique id, sequantial simple to manage vs random generator
+    //generate unique id, sequantial simple to manage vs random generator
     int orderId = nextOrderId++;
 
     //create new order. status new auto for new orders
@@ -28,9 +28,9 @@ bool OrderManager::cancelOrder(int orderId) {
     if (it != orders.end()) {
         //if found
         it->second.setStatus(OrderStatus::Cancelled); //set to cancelled
-        std::cout << "Order " << orderId << " cancelled." << std::endl;
+        std::cout << "Order " << orderId << " canceled." << std::endl;
     }
-    return true; //successs
+    return true; //success
 }
 
 
@@ -107,22 +107,29 @@ void OrderManager::matchOrders() {
             //now have sell order
             // check match. trade if buy price >=  to sell price
             if (buyOrder.getPrice() >= sellOrder.getPrice()) {
-                //can trade. fill or partially fill order
-                //check remaining orders for both sides
-                int buyRemaining = buyOrder.getQuantity() - buyOrder.getFilledQuantity();
-                int sellRemaining = sellOrder.getQuantity() - sellOrder.getFilledQuantity();
-                //can only buy <= sell amount
-                int matchQty = std::min(buyRemaining, sellRemaining);
-                //fill orders
-                buyOrder.fill(matchQty);
-                sellOrder.fill(matchQty);
-
-                std::cout << "\nMatched " << matchQty << " units between buy order " << buyOrder.getId() <<
-                        " and sell Order " << sellOrder.getId() << std::endl;
-
-                //stop if buy order is full fulfilled
+                //can trade. Fill or partially fill order
+               fillOrders(buyOrder, sellOrder);
+                //Only call  / break after match and order full. stop if buy order is full fulfilled. No need to continue checking other sellers
                 if (buyOrder.isFilled()) { break; }
             }
         }
     }
+}
+
+//Helper method Fill orders after finding match
+void OrderManager::fillOrders(Order& buyOrder, Order& sellOrder) {
+    //can trade. fill or partially fill order
+    //Determine how much to trade. check remaining orders for both sides
+    int buyRemaining = buyOrder.getQuantity() - buyOrder.getFilledQuantity();
+    int sellRemaining = sellOrder.getQuantity() - sellOrder.getFilledQuantity();
+    //can only buy <= sell amount
+    int matchQty = std::min(buyRemaining, sellRemaining);
+    //fill orders
+    buyOrder.fill(matchQty);
+    sellOrder.fill(matchQty);
+
+    std::cout << "\nMatched " << matchQty << " units between buy order " << buyOrder.getId() <<
+            " and sell Order " << sellOrder.getId() << std::endl;
+
+
 }
