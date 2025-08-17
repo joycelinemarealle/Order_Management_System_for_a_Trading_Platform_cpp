@@ -13,6 +13,8 @@ A modular Order Management System built in modern C++17, simulating the core mec
 - Interactive CLI: Lightweight interface for testing order actions without a graphical UI.
 
 - Modern C++ Practices: Applied object-oriented design, STL containers, memory management, and clean code principles.
+  
+- Unit Testing: Verified core functionality through unit tests covering order creation, matching logic, and fill behavior.
 
  **Why This Project?**
 
