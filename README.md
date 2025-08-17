@@ -1,8 +1,33 @@
-Order Management System (C++)
-I built this Order Management System to practice modern C++ while learning how real-world trading and brokerage systems work behind the scenes.
+C++ Low-Latency Order Management System
 
-The system allows users to create, update, and cancel buy or sell orders. It supports basic matching logic, keeps a history of all orders, and handles user input from a simple command-line interface.
+A modular Order Management System built in modern C++17, simulating the core mechanics of trading and brokerage platforms.
 
-I used this project to reinforce core C++ skills such as object-oriented programming, memory management, references and pointers, and templates. It also gave me a hands-on way to think about system design and trade flows in a low-latency environment.
+Key Features
 
-My next steps are to add order matching logic, support for multiple users, and maybe explore file persistence or logging.
+Order Lifecycle Management: Supports order creation, cancellation, and status tracking via a command-line interface (CLI).
+
+Buy/Sell Matching Engine: Implements core order matching logic with support for partial and full order fills.
+
+Fill Tracking: Automatically updates filled quantities and order status after each trade.
+
+Interactive CLI: Lightweight interface for testing order actions without a graphical UI.
+
+Modern C++ Practices: Applied object-oriented design, STL containers, memory management, and clean code principles.
+
+ Why This Project?
+
+This project deepened my understanding of:
+
+How trading systems process and match orders in real-time
+
+Efficient C++ design in performance-sensitive environments
+
+Clean separation of concerns using classes like Order, OrderManager, and CLI
+
+Next Steps
+
+Add file-based persistence and logging
+
+Expand to support multiple users
+
+Write unit tests for core functionalities
