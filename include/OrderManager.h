@@ -28,5 +28,7 @@ public:
     void matchOrders();
 
     void fillOrders(Order& buyOrder, Order& sellOrder);
+
+
 };
 #endif //ORDERMANAGER_H
