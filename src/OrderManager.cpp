@@ -33,8 +33,8 @@ bool OrderManager::cancelOrder(int orderId) {
     return true; //success
 }
 
-
-const Order *OrderManager::getOrder(int orderId) const {
+//result is a pointer to an order
+const Order* OrderManager::getOrder(int orderId) const {
     //find order by id
     auto it = orders.find(orderId);
     if (it != orders.end()) {
@@ -45,7 +45,7 @@ const Order *OrderManager::getOrder(int orderId) const {
 }
 
 //Point to const Order.Can view but not change
-std::vector<const Order *> OrderManager::getAllOrders() const {
+std::vector<const Order*> OrderManager::getAllOrders() const {
     //Empty vector
     std::vector<const Order *> allOrders;
 
