@@ -17,6 +17,17 @@ TEST(OrderManagerTest, SubmitOrderCreatesNewBuyOrder) {
     EXPECT_EQ(order->getStatus(), OrderStatus::New);
 }
 
+TEST(OrderManagerTest, SubmitOrderThrowsErrorWithNegativePrice) {
+OrderManager manager;
+    EXPECT_THROW(
+        manager.submitOrder(OrderSide::Buy, -100.0, 10, OrderStatus::New), std::invalid_argument);
+}
+
+TEST(OrderManagerTest, SubmitOrderThrowsErrorWithNegativeQuantity) {
+OrderManager manager;
+    EXPECT_THROW(manager.submitOrder(OrderSide::Sell, 100.0, -10, OrderStatus::New), std::invalid_argument);
+}
+
 TEST(OrderManagerTest, CancelOrderUpdatesStatus) {
     OrderManager manager;
     int orderId = manager.submitOrder(OrderSide::Sell, 100.00, 10, OrderStatus::New);
@@ -25,7 +36,17 @@ TEST(OrderManagerTest, CancelOrderUpdatesStatus) {
     EXPECT_TRUE(result);
     ASSERT_NE(order,nullptr);
     EXPECT_EQ(order->getStatus(), OrderStatus::Cancelled);
+}
 
+
+TEST(OrderManagerTest, CancelOrderReturnsErrowWithInvalidOrderId) {
+OrderManager manager;
+    EXPECT_THROW(manager.cancelOrder(-1), std::invalid_argument);
+}
+
+TEST(OrderManagerTest, CancelOrderReturnsErrowWithNonExistingOrderId) {
+    OrderManager manager;
+    EXPECT_THROW(manager.cancelOrder(1000), std::invalid_argument);
 }
 
 TEST(OrderManagerTest, GetOrderReturnsCorrectOrder) {

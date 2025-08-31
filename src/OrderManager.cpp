@@ -29,11 +29,13 @@ bool OrderManager::cancelOrder(int orderId) {
         //if found
         it->second.setStatus(OrderStatus::Cancelled); //set to cancelled
         std::cout << "Order " << orderId << " canceled." << std::endl;
+        return true; //success
     }
-    return true; //success
+    else
+        throw std::invalid_argument("OrderId not found. Enter a valid orderId");
 }
 
-//result is a pointer to an order
+//result is a pointer to an order//refernce points to valid object. pointer better incase object doesnot exist
 const Order* OrderManager::getOrder(int orderId) const {
     //find order by id
     auto it = orders.find(orderId);
@@ -41,7 +43,7 @@ const Order* OrderManager::getOrder(int orderId) const {
         std::cout << "Order with id " << orderId << " was found" << std::endl;
         return &(it->second); //return address
     }
-    return nullptr;
+    return nullptr; //not found
 }
 
 //Point to const Order.Can view but not change
