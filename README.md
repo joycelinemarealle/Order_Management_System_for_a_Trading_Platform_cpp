@@ -31,5 +31,3 @@ This project deepened my understanding of:
 - Add file-based persistence and logging
 
 - Expand to support multiple users
-
-- Write unit tests for core functionalities
