@@ -55,26 +55,4 @@ int main() {
         }
     }
 
-            //TODO continue edge cases in ordermanager.H match orders!!
-
-
-    int id1 = manager.submitOrder(OrderSide::Buy, 101.0, 10, OrderStatus::New);
-    int id2 = manager.submitOrder(OrderSide::Sell, 100.5, 5, OrderStatus::New);
-    int id3 = manager.submitOrder(OrderSide::Sell, 102.0, 10, OrderStatus::New);
-    int id4 = manager.submitOrder(OrderSide::Buy, 104.0, 12, OrderStatus::New);
-
-    //cancel order 4
-    bool cancelOrderid4 = manager.cancelOrder(id4);
-
-    //Get order 1
-    const auto order1 = manager.getOrder(id1);
-
-    std::cout << "\nBefore matching:\n";
-    manager.printOrders();
-    manager.matchOrders();
-
-    std::cout << "\nAfter matching:\n";
-    manager.printOrders();
-
-    return 0;
 }
